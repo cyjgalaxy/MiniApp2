@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/recipe_diet_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id = "@+id/testText"/>
+        <TextView
+            android:id="@+id/recipe_search_diet_restriction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/diet_restriction"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/recipe_search_spinner_diet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/recipe_search_diet_restriction"
+            android:gravity="right"
+            android:spinnerMode="dropdown" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/recipe_serving_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recipe_diet_layout">
+
+        <TextView
+            android:id="@+id/recipe_search_serving_restriction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/serving_restriction"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/recipe_search_spinner_serving"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/recipe_search_serving_restriction"
+            android:gravity="right"
+            android:spinnerMode="dropdown" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/recipe_prep_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recipe_serving_layout">
+
+
+        <TextView
+            android:id="@+id/recipe_search_preparation_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+
+            android:text="@string/prep_time"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/recipe_search_spinner_prep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/recipe_search_preparation_time"
+            android:gravity="right"
+            android:spinnerMode="dropdown" />
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/recipe_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/recipe_prep_layout"
+        />
+
+</RelativeLayout>
