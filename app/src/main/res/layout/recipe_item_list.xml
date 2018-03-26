@@ -22,7 +22,7 @@
 
     <RelativeLayout
         android:id="@+id/recipe_list_text_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/recipe_list_image">
@@ -64,6 +64,14 @@
                 android:layout_marginTop="3dp"
                 android:textSize="12sp"
                 android:text="Prep Time" />
+
+            <Button
+                android:id="@+id/recipe_list_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/recipe_list_prep_time">
+
+            </Button>
 
         </RelativeLayout>
     </RelativeLayout>

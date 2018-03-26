@@ -38,7 +38,7 @@ public class Recipe implements Serializable {
     // this method will return an array list of recipes constructed from the JSON
     // file
     public static ArrayList<Recipe> getRecipesFromFile(String filename, Context context){
-        ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+        ArrayList<Recipe> recipeList = new ArrayList    <Recipe>();
 
 
         // try to read from JSON file

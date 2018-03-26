@@ -1,11 +1,17 @@
 package com.example.cyjga.miniapp2;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -72,6 +78,8 @@ public class RecipeAdapter extends BaseAdapter {
             holder.servingTextView = convertView.findViewById(R.id.recipe_list_servings);
             holder.thumbnailImageView = convertView.findViewById(R.id.recipe_list_image);
             holder.prepTimeTextView = convertView.findViewById(R.id.recipe_list_prep_time);
+            holder.resultButton = convertView.findViewById(R.id.recipe_list_Button);
+
             // add the holder to the view
             // for future use
             convertView.setTag(holder);
@@ -85,6 +93,7 @@ public class RecipeAdapter extends BaseAdapter {
         TextView servingTextView = holder.servingTextView;
         ImageView thumbnailImageView = holder.thumbnailImageView;
         TextView prepTimeTextView = holder.prepTimeTextView;
+        final Button resultButton = holder.resultButton;
 
         // get corresonpinding recipe for each row
         Recipe recipe = (Recipe) getItem(position);
@@ -105,12 +114,50 @@ public class RecipeAdapter extends BaseAdapter {
         servingTextView.setTextSize(14);
         servingTextView.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
 
+        final String someLongText = "The instruction for "+recipe.title+" can be found here!";
+/*
+        final Notification.Builder builder = new Notification.Builder(mContext);
+        builder.setStyle(new Notification.BigTextStyle(builder).bigText(someLongText).setBigContentTitle("Cooking Instruction")
+                                                .setSummaryText("The Instruction is here!"))
+                .setContentTitle("Cooking Instruction")
+                .setContentText("Summary")
+                .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                .setAutoCancel(true);
+
+        final NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+*/
+
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addNotification(someLongText);
+            }
+        });
+
 
         // imageView
         // use Picasso library to load image from the image url
         Picasso.with(mContext).load(recipe.image).into(thumbnailImageView);
 
         return convertView;
+    }
+    private void addNotification(String someLongText) {
+        Notification.Builder builder =
+                new Notification.Builder(mContext);
+        builder.setStyle(new Notification.BigTextStyle(builder).bigText(someLongText).setBigContentTitle("Cooking Instruction")
+                                .setSummaryText("The Instruction is here!"))
+                        .setContentTitle("Cooking Instruction")
+                        .setContentText("Summary")
+                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                        .setAutoCancel(true);
+
+        Intent notificationIntent = new Intent(mContext, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
     }
 
     // viewHolder
@@ -122,6 +169,7 @@ public class RecipeAdapter extends BaseAdapter {
         public TextView servingTextView;
         public ImageView thumbnailImageView;
         public TextView prepTimeTextView;
+        public Button resultButton;
     }
 
 
